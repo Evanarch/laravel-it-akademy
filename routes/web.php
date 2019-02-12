@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/about', 'AboutController@show');
+
+Route::get('/voyages', 'AboutController@show');
+
+Route::get('/admin/voyages/{id}', function($id) {return "page admin voyage ".$id ;});
