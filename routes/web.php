@@ -17,6 +17,21 @@ Route::get('/', function () {
 
 Route::get('/about', 'AboutController@show');
 
-Route::get('/voyages', 'AboutController@show');
+Route::get('/voyages', 'VoyagesController@index');
+Route::get('/voyages/{id}', 'VoyagesController@show');
 
 Route::get('/admin/voyages/{id}', function($id) {return "page admin voyage ".$id ;});
+
+
+Route::group(['prefix' => 'admin'], function(){
+  Route::get('/voyage/create', function() {return view("admin/create");});
+  Route::post('/voyage/store', 'AdminVoyageController@store');
+  Route::get('/voyage/edit/{id}', 'AdminVoyageController@edit');
+  Route::put('/voyage/update/{id}', 'AdminVoyageController@update');
+  Route::get('/voyage/delete/{id}', 'AdminVoyageController@destroy');
+});
+//Route::group(['prefix' =>])
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
